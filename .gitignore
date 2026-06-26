@@ -1,0 +1,12 @@
+# Environments
+venv/
+env/
+__pycache__/
+
+# Datasets
+kaggle_data/
+*.parquet
+
+# Intermediate/Failed Models
+asl_autosave.h5
+asl_transformer_model.h5

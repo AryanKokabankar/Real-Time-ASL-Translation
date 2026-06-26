@@ -1,0 +1,23 @@
+digraph ASL_Pipeline {
+	rankdir=LR size="10,5"
+	Webcam [label="Webcam Feed
+(Real-time RGB Video)" fillcolor=lightblue shape=cylinder style=filled]
+	MediaPipe [label="MediaPipe Hand Tracking
+(134 Geometric Features)" shape=box]
+	Math [label="Feature Engineering
+(+ Velocity & 30-Frame Buffer)" shape=box]
+	LSTM [label="Attention-LSTM Hybrid
+(250-Word Classifier)" fillcolor=lightgreen shape=box style=filled]
+	Logic [label="Debounce & Kill Switch
+(Validates Array)" shape=diamond]
+	LLM [label="Gemini 2.5 Flash LLM
+(ASL Gloss -> English)" fillcolor=orange shape=box style=filled]
+	UI [label="Final Output
+(Grammatically Correct Sentence)" shape=ellipse]
+	Webcam -> MediaPipe
+	MediaPipe -> Math [label=" Array (134)"]
+	Math -> LSTM [label=" Shape (30, 268)"]
+	LSTM -> Logic [label=" Raw ASL Words"]
+	Logic -> LLM [label=" \"t\" Key Trigger"]
+	LLM -> UI
+}
